@@ -1,0 +1,7 @@
+#level
+0
+#radius posX posY wait-time direction bounces is-moving
+59.68274782053685 346.0 280.0 55 LEFT 3 false
+76.59320469750222 228.0 29.63116560140304 75 UP 1 false
+44.04639363906906 70.0 140.0 51 RIGHT 2 false
+74.43261950359768 380.0 169.0 72 DOWN 2 false

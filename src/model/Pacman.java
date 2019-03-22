@@ -15,7 +15,6 @@ public class Pacman implements Serializable{
 	public static final double ADVANCE = 3.0;
 	
 	//attributes
-	
 	private double posX;
 	private double posY;
 	private boolean moving;
@@ -28,7 +27,6 @@ public class Pacman implements Serializable{
 	private int bounces;
 	
 	//constructor
-	
 	public Pacman(double radius, double posX, double posY, char direction, int subDirection, long wait, int bounces, boolean moving, double limitX, double limitY) {
 		this.radius = radius;
 		this.posX = posX;
@@ -44,7 +42,6 @@ public class Pacman implements Serializable{
 	}
 	
 	//methods
-	
 	public void move() {
 		if(moving) {
 			if(direction == HOR) {
@@ -98,8 +95,6 @@ public class Pacman implements Serializable{
 				bounces++;
 				pacman.setBounces(pacman.getBounces()+1);
 				double difference = radius + pacman.getRadius() - distance;
-				//System.out.println("("+posX+ ","+ posY+") ("+pacman.getPosX()+","+pacman.getPosY() +") "
-				//					+ " d: " + distance + " r1: " + radius+ " r2: "+ pacman.getRadius()+ " diff: "+difference);
 				if(direction == HOR) {
 					posX += difference/3*subDirection;
 				} else {
@@ -115,7 +110,6 @@ public class Pacman implements Serializable{
 	}
 	
 	//getters and setters
-	
 	public double getPosX() {
 		return posX;
 	}
@@ -179,5 +173,5 @@ public class Pacman implements Serializable{
 	public void setBounces(int bounces) {
 		this.bounces = bounces;
 	}
-
+	
 }

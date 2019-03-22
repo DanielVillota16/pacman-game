@@ -4,19 +4,16 @@ import model.Pacman;
 public class PacmanThread extends Thread{
 
 	//attributes
-	
 	private Pacman pacman;
 	private boolean stop;
 	
 	//constructor
-	
 	public PacmanThread(Pacman pacman) {
 		this.stop = false;
 		this.pacman = pacman;
 	}
 	
 	//run method
-	
 	@Override
 	public void run() {
 		while(!stop) {
@@ -33,7 +30,6 @@ public class PacmanThread extends Thread{
 	}
 	
 	//getters and setters
-	
 	public boolean isStop() {
 		return stop;
 	}

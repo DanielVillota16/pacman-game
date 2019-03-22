@@ -1,39 +1,53 @@
 package threads;
 
-import ui.GameZone;
+import javafx.application.Platform;
+import ui.PacmanController;
 
 public class Refresh extends Thread{
 	
-	private GameZone zone;
+	//attributes
+	private PacmanController pc;
 	private boolean stop;
 	
-	public Refresh(GameZone zone) {
-		this.zone = zone;
+	//constructor
+	public Refresh(PacmanController pc) {
+		this.pc = pc;
 		this.stop = false;
 	}
 
+	//run method
 	@Override
 	public void run() {
-		long sleepTime = zone.getMinimumWaitTime();
-		while(!stop) {
-			zone.redraw();
-			zone.verifyBounces();
+		long sleepTime = pc.
+				getZone().getMinimumWaitTime();
+		while(!stop && pc.getZone().getGame().isGameOn()) {
+			pc.getZone().redraw();
+			pc.getZone().verifyBounces();
+			pc.getGame().verifyGameOn();
 			try {
 				sleep(sleepTime);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
-	}
-	
-	public GameZone getZone() {
-		return zone;
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				if(!pc.getZone().getGame().isGameOn()) {
+					pc.verifyScore();
+				}
+			}
+		});
 	}
 
-	public void setZone(GameZone zone) {
-		this.zone = zone;
+	//getters and setters
+	public PacmanController getPc() {
+		return pc;
+	}
+
+	public void setPc(PacmanController pc) {
+		this.pc = pc;
 	}
 
 	public boolean isStop() {
@@ -43,4 +57,6 @@ public class Refresh extends Thread{
 	public void setStop(boolean stop) {
 		this.stop = stop;
 	}
+	
+	
 }

@@ -9,21 +9,26 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Rectangle;
+import model.Game;
 import model.Pacman;
 
 public class GameZone extends Canvas implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	//attributes
 	private Pacman[] pacmans;
+	private Game game;
 	private GraphicsContext gc;
 	private boolean openMouth;
 	private int startAngle;
 	private int angleLength;
-
-	public GameZone(Pacman[] pacmans) {
+	
+	//constructor
+	public GameZone(Game game) {
 		super(800, 500);
-		this.pacmans = pacmans;
+		this.setGame(game);
+		this.pacmans = game.getPacmans();
 		gc = super.getGraphicsContext2D();
 		gc.setLineWidth(3);
 		gc.setFill(Color.YELLOW);
@@ -45,6 +50,7 @@ public class GameZone extends Canvas implements Serializable {
 		});
 	}
 	
+	//methods
 	public long getMinimumWaitTime() {
 		long min = pacmans[0].getWait();
 		for (int i = 0; i < pacmans.length; i++) {
@@ -98,6 +104,15 @@ public class GameZone extends Canvas implements Serializable {
 				}
 			}
 		}
+	}
+	
+	//getters and setters
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
 	}
 	
 }
